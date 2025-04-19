@@ -79,6 +79,11 @@
             margin-bottom: 40px;
             position: relative;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.5s ease;
+        }
+        
+        .profile-card.expanded {
+            padding: 60px;
         }
         
         .profile-image {
@@ -87,6 +92,12 @@
             border-radius: 12px;
             overflow: hidden;
             margin-right: 40px;
+            transition: all 0.5s ease;
+        }
+        
+        .profile-card.expanded .profile-image {
+            width: 250px;
+            height: 250px;
         }
         
         .profile-image img {
@@ -95,9 +106,19 @@
             object-fit: cover;
         }
         
+        .profile-info {
+            flex-grow: 1;
+            transition: all 0.5s ease;
+        }
+        
         .profile-info h1 {
             font-size: 2.5rem;
             margin-bottom: 15px;
+            transition: all 0.5s ease;
+        }
+        
+        .profile-card.expanded .profile-info h1 {
+            font-size: 3rem;
         }
         
         .profile-tag {
@@ -109,6 +130,35 @@
             margin-bottom: 20px;
         }
         
+        .contact-details {
+            display: none;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid #333;
+        }
+        
+        .contact-details.show {
+            display: block;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .contact-item i {
+            width: 30px;
+            height: 30px;
+            background-color: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #e9c46a;
+        }
+        
         .show-contacts {
             position: absolute;
             top: 20px;
@@ -118,6 +168,7 @@
             padding: 8px 20px;
             border-radius: 4px;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
         
         .show-contacts:hover {
@@ -477,13 +528,13 @@
         
         /* Responsive Styles */
         @media screen and (max-width: 991px) {
-            .profile-card {
+            .profile-card, .profile-card.expanded {
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
             }
             
-            .profile-image {
+            .profile-image, .profile-card.expanded .profile-image {
                 margin-right: 0;
                 margin-bottom: 30px;
             }
@@ -494,6 +545,10 @@
             
             .section-title::after {
                 margin: 10px auto 0;
+            }
+
+            .contact-item {
+                justify-content: center;
             }
         }
         
@@ -524,9 +579,26 @@
                 <div class="profile-info">
                     <h1>Rutvi Vadi</h1>
                     <div class="profile-tag">Information Technology Student</div>
-                    <p>+91-9016901388 | rutvivadi7@gmail.com</p>
-                    <a href="#" class="show-contacts">Show Contacts</a>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>rutvivadi7@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+91-9016901388</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-birthday-cake"></i>
+                            <span>June 1, 2004</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Surat, Gujarat, India</span>
+                        </div>
+                    </div>
                 </div>
+                <a href="#" class="show-contacts">Show Contacts</a>
             </div>
             
             <ul class="nav-tabs">
@@ -832,81 +904,92 @@
                     <div class="location-icon">
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
-                    <div>
-                        <h3>Location</h3>
+                    <div class="location-info">
+                        <h3>My Location</h3>
                         <p>Surat, Gujarat, India</p>
                     </div>
                 </div>
                 
-                <h2>Let's talk about your project</h2>
-                <p>Feel free to reach out if you have any questions or want to work together on a project.</p>
-                
                 <div class="contact-form">
-                    <form>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" placeholder="Your Message" required></textarea>
-                        </div>
-                        <div class="send-btn">
-                            <button type="submit">
-                                <i class="far fa-paper-plane"></i> Send Message
-                            </button>
-                        </div>
-                    </form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Your Email">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Subject">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Your Message"></textarea>
+                    </div>
+                    <div class="send-btn">
+                        <button type="submit">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="social-links">
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>
-            <p>&copy; 2025 Rutvi Vadi. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Show contacts toggle
-        document.querySelector('.show-contacts').addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Toggle display of contact information
-            const contactInfo = document.querySelector('.profile-info p');
-            if (contactInfo.style.display === 'none') {
-                contactInfo.style.display = 'block';
-                this.textContent = 'Hide Contacts';
-            } else {
-                contactInfo.style.display = 'none';
-                this.textContent = 'Show Contacts';
-            }
-        });
-
-        // Initially hide the contact information
-        document.addEventListener('DOMContentLoaded', function() {
-            const contactInfo = document.querySelector('.profile-info p');
-            contactInfo.style.display = 'none';
-        });
-    </script>
-</body>
-</html>
+                </div>
+                </div>
+                </section>
+                
+                <!-- Footer -->
+                <footer>
+                    <div class="container">
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                        <p>&copy; 2025 Rutvi Vadi. All Rights Reserved.</p>
+                    </div>
+                </footer>
+                
+                <!-- JavaScript -->
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // Toggle contact details
+                        const showContactsBtn = document.querySelector('.show-contacts');
+                        const contactDetails = document.querySelector('.contact-details');
+                        const profileCard = document.querySelector('.profile-card');
+                        
+                        showContactsBtn.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            contactDetails.classList.toggle('show');
+                            profileCard.classList.toggle('expanded');
+                            
+                            if (contactDetails.classList.contains('show')) {
+                                showContactsBtn.textContent = 'Hide Contacts';
+                            } else {
+                                showContactsBtn.textContent = 'Show Contacts';
+                            }
+                        });
+                        
+                        // Smooth scrolling for navigation
+                        const navLinks = document.querySelectorAll('.nav-tabs a');
+                        
+                        navLinks.forEach(link => {
+                            link.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                
+                                // Remove active class from all links
+                                navLinks.forEach(link => link.classList.remove('active'));
+                                
+                                // Add active class to clicked link
+                                this.classList.add('active');
+                                
+                                const targetId = this.getAttribute('href');
+                                const targetSection = document.querySelector(targetId);
+                                
+                                window.scrollTo({
+                                    top: targetSection.offsetTop - 20,
+                                    behavior: 'smooth'
+                                });
+                            });
+                        });
+                    });
+                </script>
+                </body>
+                </html>
